@@ -4,14 +4,13 @@ i=0
 rdy=0
 pass=0000
 
-
 while [ $rdy -eq 0 ]
 do
     echo "$pass"
     rm -f tex2html-test.tar
     if 7z x -p$pass tex2html-test.tar.7z >/dev/null 2>&1
     then
-        echo "pass $pass is correct"
+        echo "I think that the password is  $pass "
         rdy=1
     else
         i=$[i + 1]
