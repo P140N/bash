@@ -4,7 +4,10 @@
 
 rm out.html
 
-wget  -U "opera" -O out.html "https://www.google.ru/#hl=ru&newwindow=1&q="$@"&tbs=dfn:1&tbo=u&fp=1"
+wget -qO- -U "Firefox/3.0.15"  "https://www.google.ru/#hl=ru&newwindow=1&q="$@"&tbs=dfn:1&tbo=u&fp=1" \
+    | grep -Po '(?<=<li>)[^<]+' \
+    | nl \
+    | perl -MHTML::Entities -pe 'decode_entities($_)' 2>/dev/null; 
 
 
 
@@ -13,8 +16,3 @@ wget  -U "opera" -O out.html "https://www.google.ru/#hl=ru&newwindow=1&q="$@"&tb
 
 
 
-
-
-cat out.html
-
-#echo $gurl
